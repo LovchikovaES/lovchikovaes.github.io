@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advent Calendar Planner</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    .toggle-header {
+      cursor: pointer;
+      font-weight: bold;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .group-title {
+      display: flex;
+      align-items: center;
+    }
+
+    .group-name {
+      margin-right: 5px;
+    }
+
+    .group-name.green,
+    .toggle-icon.green {
+      color: green;
+    }
+
+    .group-summary {
+      font-style: italic;
+      font-size: 0.9em;
+    }
+
+    .toggle-icon {
+      margin-right: 10px;
+      font-size: 1.2em;
+    }
+
+    .group-items {
+      display: none;
+      list-style-type: none;
+      padding-left: 20px;
+    }
+
+    .group-items li {
+      margin: 10px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .item-details {
+      margin-bottom: 5px;
+    }
+
+    .total {
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .links-section {
+      margin-top: 10px;
+    }
+
+    .collapsed .group-items {
+      display: none;
+    }
+
+    .expanded .group-items {
+      display: block;
+    }
+
+    .collapsed .toggle-icon::after {
+      content: '►';
+    }
+
+    .expanded .toggle-icon::after {
+      content: '▼';
+    }
+
+    .item-image {
+      height: 200px;
+      width: auto;
+      margin-right: 20px;
+      margin-bottom: 20px;
+    }
+
+    /* New CSS for selected items */
+    /*
+    .selected-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .selected-item img {
+      width: 200px;
+      height: auto;
+      margin-right: 10px;
+    }
+    */
+
+  </style>
+</head>
+
+<body>
+
+  <h2>Advent Calendar Planner</h2>
+
+  <!-- Perfumes Group -->
+  <div class="group">
+    <div class="toggle-header">
+      <span class="group-title">
+        <span class="toggle-icon"></span>
+        <span class="group-name">Perfumes</span>
+        <span class="group-summary">(Total: €<span class="group-total-price">0.00</span>, Quantity: <span class="group-total-quantity">0</span>)</span>
+      </span>
+    </div>
+    <ul class="group-items">
+      <li>
+        <div class="item-details">
+          <input type="checkbox" class="item-checkbox" data-price="47.00" data-quantity="6" data-link="https://www.byredo.com/eu_en/perfume/personal-fragrances/discovery-set/" data-name="BYREDO Discovery Set"
+            data-image="https://www.byredo.com/media/catalog/product/cache/c5a89872cc52c0f5e6106953800b3b5c/1/5/1500x1680px_florale-vails_2ml_230921.jpg">
+          BYREDO Discovery Set - €47.00, Quantity: 6
+        </div>
+        <a href="https://www.byredo.com/eu_en/perfume/personal-fragrances/discovery-set/" target="_blank">
+          <img src="https://www.byredo.com/media/catalog/product/cache/c5a89872cc52c0f5e6106953800b3b5c/1/5/1500x1680px_florale-vails_2ml_230921.jpg" alt="BYREDO Discovery Set Image" class="item-image">
+        </a>
+      </li>
+      <li>
+        <div class="item-details">
+          <input type="checkbox" class="item-checkbox" data-price="40.00" data-quantity="8" data-link="https://matiere-premiere.com/en/produit/individual-samples/" data-name="MATIERE PREMIERE, Eau de Parfum Samples"
+            data-image="https://matiere-premiere.com/wp-content/uploads/2023/09/MATIERE-PREMIERE_NEROLI-ORANGER_VANILLA-POWDER_FALCON-LEATHER_CRYSTAL-SAFFRON_FRENCH-FLOWER_PARISIAN-MUSC_SANTAL-AUSTRAL_RADICAL-ROSE_15ml_EDP-1024x1024.jpg">
+          MATIERE PREMIERE, Eau de Parfum Samples - €40.00, Quantity: 8
+        </div>
+        <a href="https://matiere-premiere.com/en/produit/individual-samples/" target="_blank">
+          <img src="https://matiere-premiere.com/wp-content/uploads/2023/09/MATIERE-PREMIERE_NEROLI-ORANGER_VANILLA-POWDER_FALCON-LEATHER_CRYSTAL-SAFFRON_FRENCH-FLOWER_PARISIAN-MUSC_SANTAL-AUSTRAL_RADICAL-ROSE_15ml_EDP-1024x1024.jpg"
+            alt="Matiere Premiere Eau de Parfum Samples Image" class="item-image">
+        </a>
+      </li>
+      <li>
+        <div class="item-details">
+          <input type="checkbox" class="item-checkbox" data-price="40.00" data-quantity="8" data-link="https://maisoncrivelli.com/en/parfums/coffret-extraits-de-parfum-en/" data-name="MAISON CRIVELLI, Discovery set extraits de parfum"
+            data-image="https://maisoncrivelli.com/wp-content/uploads/2024/01/Coffret-decouverte-extraits-de-parfum-2048x2048-1-1536x1536.png">
+          MAISON CRIVELLI, Discovery set extraits de parfum - €40.00, Quantity: 8
+        </div>
+        <a href="https://maisoncrivelli.com/en/parfums/coffret-extraits-de-parfum-en/" target="_blank">
+          <img src="https://maisoncrivelli.com/wp-content/uploads/2024/01/Coffret-decouverte-extraits-de-parfum-2048x2048-1-1536x1536.png" alt="Maison Crivelli Discovery Set Image" class="item-image">
+        </a>
+      </li>
+      <li>
+        <div class="item-details">
+          <input type="checkbox" class="item-checkbox" data-price="65.00" data-quantity="10"
+            data-link="https://ormaieparis.myshopify.com/collections/les-echantillons/products/les-echantillons?fbclid=PAZXh0bgNhZW0BMAABpiJxGC0LHXMZANoCjLq2s2FE6d9dMXq-hDlmC2h5yuroAYoXcraQXt_5bg_aem_2kLY-xwScwq9y6O7YoyVwA&utm_source=facebook&utm_medium=paid&campaign_id=120205992488210298&ad_id=120206234973960298&shpxid=0df5f334-edbf-4844-a8f6-3e97f09bd555"
+            data-name="ORMAIE, Collection set" data-image="https://ormaieparis.myshopify.com/cdn/shop/products/Boites_Les9Echantillons_Contours_Web_2048x2048.webp?v=1671441391">
+          ORMAIE, Collection set - €65.00, Quantity: 10
+        </div>
+        <a href="https://ormaieparis.myshopify.com/collections/les-echantillons/products/les-echantillons?fbclid=PAZXh0bgNhZW0BMAABpiJxGC0LHXMZANoCjLq2s2FE6d9dMXq-hDlmC2h5yuroAYoXcraQXt_5bg_aem_2kLY-xwScwq9y6O7YoyVwA&utm_source=facebook&utm_medium=paid&campaign_id=120205992488210298&ad_id=120206234973960298&shpxid=0df5f334-edbf-4844-a8f6-3e97f09bd555"
+          target="_blank">
+          <img src="https://ormaieparis.myshopify.com/cdn/shop/products/Boites_Les9Echantillons_Contours_Web_2048x2048.webp?v=1671441391" alt="Ormaie Collection Set Image" class="item-image">
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Notino Group -->
+  <div class="group">
+    <div class="toggle-header">
+      <span class="group-title">
+        <span class="toggle-icon"></span>
+        <span class="group-name">Notino</span>
+        <span class="group-summary">(Total: €<span class="group-total-price">0.00</span>, Quantity: <span class="group-total-quantity">0</span>)</span>
+      </span>
+    </div>
+    <ul class="group-items">
+      <li>
+        <div class="item-details">
+          <input type="checkbox" class="item-checkbox" data-price="22.08" data-quantity="4" data-link="https://www.notino.pt/beauty-of-joseon/hanbang-coffretpara-pele-perfeita/" data-name="Beauty Of Joseon, Hanbang Serum Discovery Kit"
+            data-image="https://cdn.notinoimg.com/detail_main_mq/beauty_of_joseon/8809738315897_01-o/beauty-of-joseon-hanbang-serum-discovery-kit-coffret-para-pele-perfeita___221104.jpg">
+          Beauty Of Joseon, Hanbang Serum Discovery Kit - €22.08, Quantity: 4
+        </div>
+        <a href="https://www.notino.pt/beauty-of-joseon/hanbang-coffretpara-pele-perfeita/" target="_blank">
+          <img src="https://cdn.notinoimg.com/detail_main_mq/beauty_of_joseon/8809738315897_01-o/beauty-of-joseon-hanbang-serum-discovery-kit-coffret-para-pele-perfeita___221104.jpg" alt="Beauty Of Joseon Image" class="item-image">
+        </a>
+      </li>
+      <li>
+        <div class="item-details">
+          <input type="checkbox" class="item-checkbox" data-price="12.20" data-quantity="3" data-link="https://www.notino.pt/origins/hello-me-time-multi-masking-trio-coffret-para-rosto/" data-name="Origins, 3 masks"
+            data-image="https://cdn.notinoimg.com/detail_main_mq/origins/717334272453_01-o/origins-hello-me-time-multi-masking-trio-coffret-para-rosto___240308.jpg">
+          Origins, 3 masks - €12.20, Quantity: 3
+        </div>
+        <a href="https://www.notino.pt/origins/hello-me-time-multi-masking-trio-coffret-para-rosto/" target="_blank">
+          <img src="https://cdn.notinoimg.com/detail_main_mq/origins/717334272453_01-o/origins-hello-me-time-multi-masking-trio-coffret-para-rosto___240308.jpg" alt="Origins 3 Masks Image" class="item-image">
+        </a>
+      </li>
+      <li>
+        <div class="item-details">
+          <input type="checkbox" class="item-checkbox" data-price="22.80" data-quantity="5" data-link="https://www.notino.pt/origins/plenty-of-tlc-our-masking-essentials-coffret-para-rosto/" data-name="Origins, 5 masks"
+            data-image="https://cdn.notinoimg.com/detail_main_mq/origins/717334272408_01/origins-plenty-of-tlc-our-masking-essentials-coffret-para-rosto___240404.jpg">
+          Origins, 5 masks - €22.80, Quantity: 5
+        </div>
+        <a href="https://www.notino.pt/origins/plenty-of-tlc-our-masking-essentials-coffret-para-rosto/" target="_blank">
+          <img src="https://cdn.notinoimg.com/detail_main_mq/origins/717334272408_01/origins-plenty-of-tlc-our-masking-essentials-coffret-para-rosto___240404.jpg" alt="Origins 5 Masks Image" class="item-image">
+        </a>
+      </li>
+      <li>
+        <div class="item-details">
+          <input type="checkbox" class="item-checkbox" data-price="17.51" data-quantity="3" data-link="https://www.notino.pt/dr-jart/pore-remedy-pha-exfoliating-serum-coffretpara-rosto/" data-name="Dr. Jart+, Ceramidin™ Moisture Set"
+            data-image="https://cdn.notinoimg.com/detail_main_mq/dr_jart/8809844997130_01-o/dr-jart-ceramidin-hello-moisture-set-coffret-para-rosto___231109.jpg">
+          Dr. Jart+, Ceramidin™ Moisture Set - €17.51, Quantity: 3
+        </div>
+        <a href="https://www.notino.pt/dr-jart/pore-remedy-pha-exfoliating-serum-coffretpara-rosto/" target="_blank">
+          <img src="https://cdn.notinoimg.com/detail_main_mq/dr_jart/8809844997130_01-o/dr-jart-ceramidin-hello-moisture-set-coffret-para-rosto___231109.jpg" alt="Dr. Jart+ Ceramidin Image" class="item-image">
+        </a>
+      </li>
+      <li>
+        <div class="item-details">
+          <input type="checkbox" class="item-checkbox" data-price="47.94" data-quantity="3" data-link="https://www.notino.pt/filorga/giftset-smoothing-coffretantirrugas/" data-name="FILORGA, GIFTSET SMOOTHING"
+            data-image="https://cdn.notinoimg.com/detail_main_mq/filorga/3540550015644_01/filorga-giftset-smoothing-coffret-antirrugas___240314.jpg">
+          FILORGA, GIFTSET SMOOTHING - €47.94, Quantity: 3
+        </div>
+        <a href="https://www.notino.pt/filorga/giftset-smoothing-coffretantirrugas/" target="_blank">
+          <img src="https://cdn.notinoimg.com/detail_main_mq/filorga/3540550015644_01/filorga-giftset-smoothing-coffret-antirrugas___240314.jpg" alt="FILORGA Giftset Image" class="item-image">
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- CULT Beauty Group -->
+  <div class="group">
+    <div class="toggle-header">
+      <span class="group-title">
+        <span class="toggle-icon"></span>
+        <span class="group-name">CULT Beauty</span>
+        <span class="group-summary">(Total: €<span class="group-total-price">0.00</span>, Quantity: <span class="group-total-quantity">0</span>)</span>
+      </span>
+    </div>
+    <ul class="group-items">
+      <li>
+        <div class="item-details">
+          <input type="checkbox" class="item-checkbox" data-price="16.94" data-quantity="3" data-link="https://www.cultbeauty.com/p/byoma-brightening-starter-kit/15281177/" data-name="BYOMA, Brightening Starter Kit"
+            data-image="https://static.thcdn.com/productimg/original/15281177-1425136214250343.jpg">
+          BYOMA, Brightening Starter Kit - €16.94, Quantity: 3
+        </div>
+        <a href="https://www.cultbeauty.com/p/byoma-brightening-starter-kit/15281177/" target="_blank">
+          <img src="https://static.thcdn.com/productimg/original/15281177-1425136214250343.jpg" alt="BYOMA Brightening Starter Kit Image" class="item-image">
+        </a>
+      </li>
+      <li>
+        <div class="item-details">
+          <input type="checkbox" class="item-checkbox" data-price="36.16" data-quantity="5" data-link="https://www.cultbeauty.com/p/glow-recipe-fruit-babies-routine/15204330/" data-name="Glow Recipe, Fruit Babies Routine"
+            data-image="https://static.thcdn.com/productimg/original/15204330-2085120147412996.jpg">
+          Glow Recipe, Fruit Babies Routine - €36.16, Quantity: 5
+        </div>
+        <a href="https://www.cultbeauty.com/p/glow-recipe-fruit-babies-routine/15204330/" target="_blank">
+          <img src="https://static.thcdn.com/productimg/original/15204330-2085120147412996.jpg" alt="Glow Recipe Fruit Babies Routine Image" class="item-image">
+        </a>
+      </li>
+      <li>
+        <div class="item-details">
+          <input type="checkbox" class="item-checkbox" data-price="18.98" data-quantity="10" data-link="https://www.cultbeauty.com/p/molton-brown-discovery-body-care-set/14574057/" data-name="Molton Brown, Discovery Body Care Set"
+            data-image="https://static.thcdn.com/productimg/original/14574057-1955063550469128.jpg">
+          Molton Brown, Discovery Body Care Set - €18.98, Quantity: 10
+        </div>
+        <a href="https://www.cultbeauty.com/p/molton-brown-discovery-body-care-set/14574057/" target="_blank">
+          <img src="https://static.thcdn.com/productimg/original/14574057-1955063550469128.jpg" alt="Molton Brown Discovery Body Care Set Image" class="item-image">
+        </a>
+      </li>
+      <li>
+        <div class="item-details">
+          <input type="checkbox" class="item-checkbox" data-price="22.60" data-quantity="5" data-link="https://www.cultbeauty.com/p/byoma-barrier-boosting-heroes-bundle/15396804/" data-name="BYOMA, Barrier Boosting Heroes Bundle"
+            data-image="https://static.thcdn.com/productimg/original/15396804-9855153059729449.jpg">
+          BYOMA, Barrier Boosting Heroes Bundle - €22.60, Quantity: 5
+        </div>
+        <a href="https://www.cultbeauty.com/p/byoma-barrier-boosting-heroes-bundle/15396804/" target="_blank">
+          <img src="https://static.thcdn.com/productimg/original/15396804-9855153059729449.jpg" alt="BYOMA Barrier Boosting Heroes Bundle Image" class="item-image">
+        </a>
+      </li>
+      <li>
+        <div class="item-details">
+          <input type="checkbox" class="item-checkbox" data-price="22.60" data-quantity="3" data-link="https://www.cultbeauty.com/p/laneige-strong-barrier-minis-set/15428499/" data-name="LANEIGE, Strong Barrier Minis Set"
+            data-image="https://static.thcdn.com/productimg/original/15428499-4635165683270446.jpg">
+          LANEIGE, Strong Barrier Minis Set - €22.60, Quantity: 3
+        </div>
+        <a href="https://www.cultbeauty.com/p/laneige-strong-barrier-minis-set/15428499/" target="_blank">
+          <img src="https://static.thcdn.com/productimg/original/15428499-4635165683270446.jpg" alt="LANEIGE Strong Barrier Minis Set Image" class="item-image">
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Medik8 Group -->
+  <div class="group">
+    <div class="toggle-header">
+      <span class="group-title">
+        <span class="toggle-icon"></span>
+        <span class="group-name">Medik8</span>
+        <span class="group-summary">(Total: €<span class="group-total-price">0.00</span>, Quantity: <span class="group-total-quantity">0</span>)</span>
+      </span>
+    </div>
+    <ul class="group-items">
+      <li>
+          <div class="item-details">
+              <input type="checkbox" class="item-checkbox" data-price="12.00" data-quantity="1" data-link="https://eu.medik8.com/products/surface-radiance-cleanse-travel-size" data-name="Surface Radiance Cleanse" data-image="https://eu.medik8.com/cdn/shop/products/Surface_Radiance_Cleanse_Try_Me_-_Grey_Background_-_2000_x_2000_-_ROW.jpg">
+              Surface Radiance Cleanse - €12.00, Quantity: 1
+          </div>
+          <a href="https://eu.medik8.com/products/surface-radiance-cleanse-travel-size" target="_blank">
+              <img src="https://eu.medik8.com/cdn/shop/products/Surface_Radiance_Cleanse_Try_Me_-_Grey_Background_-_2000_x_2000_-_ROW.jpg" alt="Surface Radiance Cleanse Image" class="item-image">
+          </a>
+      </li>
+      <li>
+          <div class="item-details">
+              <input type="checkbox" class="item-checkbox" data-price="20.00" data-quantity="1" data-link="https://eu.medik8.com/products/hydr8-b5-travel-size" data-name="Liquid Rehydration Serum Hydr8 B5™" data-image="https://eu.medik8.com/cdn/shop/products/Hydr8B5TryMe-WithCarton-GreyBackground-2000x2000_1.jpg">
+              Liquid Rehydration Serum Hydr8 B5™ - €20.00, Quantity: 1
+          </div>
+          <a href="https://eu.medik8.com/products/hydr8-b5-travel-size" target="_blank">
+              <img src="https://eu.medik8.com/cdn/shop/products/Hydr8B5TryMe-WithCarton-GreyBackground-2000x2000_1.jpg" alt="Liquid Rehydration Serum Hydr8 B5™ Image" class="item-image">
+          </a>
+      </li>
+      <li>
+          <div class="item-details">
+              <input type="checkbox" class="item-checkbox" data-price="18.00" data-quantity="1" data-link="https://eu.medik8.com/products/c-tetra-travel-size" data-name="Lipid Vitamin C Radiance Serum C-Tetra®" data-image="https://eu.medik8.com/cdn/shop/products/C-TetraTryMe-WithCarton-GreyBackground-2000x2000_1.jpg">
+              Lipid Vitamin C Radiance Serum C-Tetra® - €18.00, Quantity: 1
+          </div>
+          <a href="https://eu.medik8.com/products/c-tetra-travel-size" target="_blank">
+              <img src="https://eu.medik8.com/cdn/shop/products/C-TetraTryMe-WithCarton-GreyBackground-2000x2000_1.jpg" alt="Lipid Vitamin C Radiance Serum C-Tetra® Image" class="item-image">
+          </a>
+      </li>
+      <li>
+          <div class="item-details">
+              <input type="checkbox" class="item-checkbox" data-price="17.00" data-quantity="1" data-link="https://eu.medik8.com/products/intelligent-retinol-3tr-travel-size" data-name="Intelligent Retinol 3TR Serum" data-image="https://eu.medik8.com/cdn/shop/products/IntelligentRetinol3TRTryMe-WithCarton-GreyBackground-2000x2000_1.jpg">
+              Intelligent Retinol 3TR Serum - €17.00, Quantity: 1
+          </div>
+          <a href="https://eu.medik8.com/products/intelligent-retinol-3tr-travel-size" target="_blank">
+              <img src="https://eu.medik8.com/cdn/shop/products/IntelligentRetinol3TRTryMe-WithCarton-GreyBackground-2000x2000_1.jpg" alt="Intelligent Retinol 3TR Serum Image" class="item-image">
+          </a>
+      </li>
+      <li>
+          <div class="item-details">
+              <input type="checkbox" class="item-checkbox" data-price="12.00" data-quantity="1" data-link="https://eu.medik8.com/products/clarifying-foam-travel-size" data-name="AHA/BHA Blemish Cleanser Clarifying Foam™" data-image="https://eu.medik8.com/cdn/shop/products/ClarifyingFoamTryMe-GreyBackground-2000x2000.jpg">
+              AHA/BHA Blemish Cleanser Clarifying Foam™ - €12.00, Quantity: 1
+          </div>
+          <a href="https://eu.medik8.com/products/clarifying-foam-travel-size" target="_blank">
+              <img src="https://eu.medik8.com/cdn/shop/products/ClarifyingFoamTryMe-GreyBackground-2000x2000_1.jpg" alt="AHA/BHA Blemish Cleanser Image" class="item-image">
+          </a>
+      </li>
+      <li>
+          <div class="item-details">
+              <input type="checkbox" class="item-checkbox" data-price="12.00" data-quantity="1" data-link="https://eu.medik8.com/products/micellar-mousse-travel-size" data-name="Cleanser Micellar Mousse™" data-image="https://eu.medik8.com/cdn/shop/products/MicellarMousseTryMe-GreyBackground-2000x2000-ROW_2.jpg">
+              Cleanser Micellar Mousse™ - €12.00, Quantity: 1
+          </div>
+          <a href="https://eu.medik8.com/products/micellar-mousse-travel-size" target="_blank">
+              <img src="https://eu.medik8.com/cdn/shop/products/MicellarMousseTryMe-GreyBackground-2000x2000-ROW_2.jpg" alt="Cleanser Micellar Mousse Image" class="item-image">
+          </a>
+      </li>
+      <li>
+          <div class="item-details">
+              <input type="checkbox" class="item-checkbox" data-price="12.00" data-quantity="1" data-link="https://eu.medik8.com/products/calmwise-soothing-cleanser-travel-size" data-name="Calmwise™ Soothing Cleanser" data-image="https://eu.medik8.com/cdn/shop/products/CalmwiseSoothingCleanserTryMe-GreyBackground-2000x2000_1.jpg">
+              Calmwise™ Soothing Cleanser - €12.00, Quantity: 1
+          </div>
+          <a href="https://eu.medik8.com/products/calmwise-soothing-cleanser-travel-size" target="_blank">
+              <img src="https://eu.medik8.com/cdn/shop/products/CalmwiseSoothingCleanserTryMe-GreyBackground-2000x2000_1.jpg" alt="Calmwise™ Soothing Cleanser Image" class="item-image">
+          </a>
+      </li>
+      <li>
+          <div class="item-details">
+              <input type="checkbox" class="item-checkbox" data-price="27.00" data-quantity="1" data-link="https://eu.medik8.com/products/hydr8-b5-intense-travel-size" data-name="Hyaluronic Acid with NMF Hydr8 B5™ Intense" data-image="https://eu.medik8.com/cdn/shop/products/Hydr8_B5_Intense_Try_Me_-_With_Carton_-_Grey_Background_-_2000_x_2000.jpg">
+              Hyaluronic Acid with NMF Hydr8 B5™ Intense - €27.00, Quantity: 1
+          </div>
+          <a href="https://eu.medik8.com/products/hydr8-b5-intense-travel-size" target="_blank">
+              <img src="https://eu.medik8.com/cdn/shop/products/Hydr8_B5_Intense_Try_Me_-_With_Carton_-_Grey_Background_-_2000_x_2000.jpg" alt="Hyaluronic Acid with NMF Hydr8 B5™ Image" class="item-image">
+          </a>
+      </li>
+      <li>
+          <div class="item-details">
+              <input type="checkbox" class="item-checkbox" data-price="22.00" data-quantity="1" data-link="https://eu.medik8.com/products/intelligent-retinol-6tr-travel-size" data-name="Intelligent Retinol 6TR™ Serum" data-image="https://eu.medik8.com/cdn/shop/products/Intelligent_Retinol_6TR_Try_Me_-_With_Carton_-_Grey_Background_-_2000_x_2000.jpg">
+              Intelligent Retinol 6TR™ Serum - €22.00, Quantity: 1
+          </div>
+          <a href="https://eu.medik8.com/products/intelligent-retinol-6tr-travel-size" target="_blank">
+              <img src="https://eu.medik8.com/cdn/shop/products/Intelligent_Retinol_6TR_Try_Me_-_With_Carton_-_Grey_Background_-_2000_x_2000.jpg" alt="Intelligent Retinol 6TR™ Serum Image" class="item-image">
+          </a>
+      </li>
+      <li>
+          <div class="item-details">
+              <input type="checkbox" class="item-checkbox" data-price="24.00" data-quantity="1" data-link="https://eu.medik8.com/products/liquid-peptides-travel-size" data-name="30% Complex Multi-Peptide Serum" data-image="https://eu.medik8.com/cdn/shop/products/Liquid_Peptides_Try_Me_-_With_Carton_-_Grey_Background_-_2000_x_2000.jpg">
+              30% Complex Multi-Peptide Serum - €24.00, Quantity: 1
+          </div>
+          <a href="https://eu.medik8.com/products/liquid-peptides-travel-size" target="_blank">
+              <img src="https://eu.medik8.com/cdn/shop/products/Liquid_Peptides_Try_Me_-_With_Carton_-_Grey_Background_-_2000_x_2000.jpg" alt="30% Complex Multi-Peptide Serum Image" class="item-image">
+          </a>
+      </li>
+      <li>
+          <div class="item-details">
+              <input type="checkbox" class="item-checkbox" data-price="26.00" data-quantity="1" data-link="https://eu.medik8.com/products/calmwise-colour-correct-travel-size" data-name="Redness Neutralising Cream" data-image="https://eu.medik8.com/cdn/shop/products/Calmwise_Colour_Correct_Try_Me_-_With_Carton_-_Grey_Background_-_2000_x_2000.jpg">
+              Redness Neutralising Cream - €26.00, Quantity: 1
+          </div>
+          <a href="https://eu.medik8.com/products/calmwise-colour-correct-travel-size" target="_blank">
+              <img src="https://eu.medik8.com/cdn/shop/products/Calmwise_Colour_Correct_Try_Me_-_With_Carton_-_Grey_Background_-_2000_x_2000.jpg" alt="Redness Neutralising Cream Image" class="item-image">
+          </a>
+      </li>
+      <li>
+          <div class="item-details">
+              <input type="checkbox" class="item-checkbox" data-price="26.00" data-quantity="1" data-link="https://eu.medik8.com/products/daily-radiance-vitamin-c-travel-size" data-name="C-Tetra Cream SPF 30 Two-in-One Moisturiser" data-image="https://eu.medik8.com/cdn/shop/products/Daily_Radiance_Vitamin_C_Try_Me_-_With_Carton_-_Grey_Background_-_2000_x_2000.jpg">
+              C-Tetra Cream SPF 30 Two-in-One Moisturiser - €26.00, Quantity: 1
+          </div>
+          <a href="https://eu.medik8.com/products/daily-radiance-vitamin-c-travel-size" target="_blank">
+              <img src="https://eu.medik8.com/cdn/shop/products/Daily_Radiance_Vitamin_C_Try_Me_-_With_Carton_-_Grey_Background_-_2000_x_2000.jpg" alt="C-Tetra Cream SPF 30 Two-in-One Moisturiser Image" class="item-image">
+          </a>
+      </li>
+      <li>
+          <div class="item-details">
+              <input type="checkbox" class="item-checkbox" data-price="26.00" data-quantity="1" data-link="https://eu.medik8.com/products/advanced-night-restore-travel-size" data-name="Rejuvenating Multi-Ceramide Night Cream" data-image="https://eu.medik8.com/cdn/shop/products/Advanced_Night_Restore_Try_Me_-_With_Carton_-_Grey_Background_-_2000_x_2000.jpg">
+              Rejuvenating Multi-Ceramide Night Cream - €26.00, Quantity: 1
+          </div>
+          <a href="https://eu.medik8.com/products/advanced-night-restore-travel-size" target="_blank">
+              <img src="https://eu.medik8.com/cdn/shop/products/Advanced_Night_Restore_Try_Me_-_With_Carton_-_Grey_Background_-_2000_x_2000.jpg" alt="Rejuvenating Multi-Ceramide Night Cream Image" class="item-image">
+          </a>
+      </li>
+      <li>
+          <div class="item-details">
+              <input type="checkbox" class="item-checkbox" data-price="28.00" data-quantity="1" data-link="https://eu.medik8.com/products/c-tetra-luxe-travel-size" data-name="Lipid Vitamin C Enhanced Radiance Serum C-Tetra® Luxe" data-image="https://eu.medik8.com/cdn/shop/products/C-Tetra_Luxe_Try_Me_-_With_Carton_-_Grey_Background_-_2000_x_2000.jpg">
+              Lipid Vitamin C Enhanced Radiance Serum C-Tetra® Luxe - €28.00, Quantity: 1
+          </div>
+          <a href="https://eu.medik8.com/products/c-tetra-luxe-travel-size" target="_blank">
+              <img src="https://eu.medik8.com/cdn/shop/products/C-Tetra_Luxe_Try_Me_-_With_Carton_-_Grey_Background_-_2000_x_2000.jpg" alt="Lipid Vitamin C Enhanced Radiance Serum Image" class="item-image">
+          </a>
+      </li>
+      <li>
+          <div class="item-details">
+              <input type="checkbox" class="item-checkbox" data-price="20.00" data-quantity="1" data-link="https://eu.medik8.com/products/c-tetra-cream-travel-size" data-name="Lipid Vitamin C Radiance Cream C-Tetra®" data-image="https://eu.medik8.com/cdn/shop/products/C-Tetra_Cream_Try_Me_-_With_Carton_-_Grey_Background_-_2000_x_2000.jpg">
+              Lipid Vitamin C Radiance Cream C-Tetra® - €20.00, Quantity: 1
+          </div>
+          <a href="https://eu.medik8.com/products/c-tetra-cream-travel-size" target="_blank">
+              <img src="https://eu.medik8.com/cdn/shop/products/C-Tetra_Cream_Try_Me_-_With_Carton_-_Grey_Background_-_2000_x_2000.jpg" alt="Lipid Vitamin C Radiance Cream Image" class="item-image">
+          </a>
+      </li>
+      <li>
+          <div class="item-details">
+              <input type="checkbox" class="item-checkbox" data-price="10.00" data-quantity="1" data-link="https://eu.medik8.com/products/cream-cleanse-travel-size" data-name="Cream Cleanse" data-image="https://eu.medik8.com/cdn/shop/products/Cream_Cleanse_Try_Me_-_Grey_Background_-_2000_x_2000_-_ROW.jpg">
+              Cream Cleanse - €10.00, Quantity: 1
+          </div>
+          <a href="https://eu.medik8.com/products/cream-cleanse-travel-size" target="_blank">
+              <img src="https://eu.medik8.com/cdn/shop/products/Cream_Cleanse_Try_Me_-_Grey_Background_-_2000_x_2000_-_ROW.jpg" alt="Cream Cleanse Image" class="item-image">
+          </a>
+      </li>
+      <li>
+          <div class="item-details">
+              <input type="checkbox" class="item-checkbox" data-price="12.00" data-quantity="1" data-link="https://eu.medik8.com/products/gentle-cleanse-travel-size" data-name="Gentle Cleanse" data-image="https://eu.medik8.com/cdn/shop/products/GentleCleanseTryMe-GreyBackground-2000x2000_1_bacc7b58-6b9f-47e2-a248-b2f06ae812fa.jpg">
+              Gentle Cleanse - €12.00, Quantity: 1
+          </div>
+          <a href="https://eu.medik8.com/products/gentle-cleanse-travel-size" target="_blank">
+              <img src="https://eu.medik8.com/cdn/shop/products/GentleCleanseTryMe-GreyBackground-2000x2000_1_bacc7b58-6b9f-47e2-a248-b2f06ae812fa.jpg" alt="Gentle Cleanse Image" class="item-image">
+          </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Other Group -->
+  <div class="group">
+    <div class="toggle-header">
+      <span class="group-title">
+        <span class="toggle-icon"></span>
+        <span class="group-name">Other</span>
+        <span class="group-summary">(Total: €<span class="group-total-price">0.00</span>, Quantity: <span class="group-total-quantity">0</span>)</span>
+      </span>
+    </div>
+    <ul class="group-items">
+      <li>
+        <div class="item-details">
+          <input type="checkbox" class="item-checkbox" data-price="50.00" data-quantity="5"
+            data-link="https://eu.drsturm.com/sturmglow-starter-set/?setCurrencyId=1&sku=SET-51-13-V&redirect=disabled&gad_source=1&gclid=Cj0KCQjwo8S3BhDeARIsAFRmkOPBbr1ORJKFK3iXzLFktjfxOXtA9OrZ93N_IUKwQ8c67-f32TNHGFkaAiswEALw_wcB&gclsrc=aw.ds"
+            data-name="Dr. Barbara Sturm, STURMGLOW™️ Starter Set" data-image="https://cdn11.bigcommerce.com/s-dwdwr5marw/images/stencil/1280x1280/products/7123/10789/GLOW_DISCOVERY_TRY_OUT__27532.1704908404.jpg?c=1">
+          Dr. Barbara Sturm, STURMGLOW™️ Starter Set - €50.00, Quantity: 5
+        </div>
+        <a href="https://eu.drsturm.com/sturmglow-starter-set/?setCurrencyId=1&sku=SET-51-13-V&redirect=disabled&gad_source=1&gclid=Cj0KCQjwo8S3BhDeARIsAFRmkOPBbr1ORJKFK3iXzLFktjfxOXtA9OrZ93N_IUKwQ8c67-f32TNHGFkaAiswEALw_wcB&gclsrc=aw.ds"
+          target="_blank">
+          <img src="https://cdn11.bigcommerce.com/s-dwdwr5marw/images/stencil/1280x1280/products/7123/10789/GLOW_DISCOVERY_TRY_OUT__27532.1704908404.jpg?c=1" alt="Dr. Barbara Sturm STURMGLOW™️ Starter Set Image" class="item-image">
+        </a>
+      </li>
+      <li>
+        <div class="item-details">
+          <input type="checkbox" class="item-checkbox" data-price="38.00" data-quantity="6" data-link="https://eu.malinandgoetz.com/best-sellers-travel-kit" data-name="MALIN+GOETZ, Best-sellers Travel Kit"
+            data-image="https://eu.malinandgoetz.com/media/catalog/product/cache/0168a32d73c9682ea7a84c8fe1cff9c7/t/r/travel-kit-wall-lean-1oz-sfw_1.jpg">
+          MALIN+GOETZ, Best-sellers Travel Kit - €38.00, Quantity: 6
+        </div>
+        <a href="https://eu.malinandgoetz.com/best-sellers-travel-kit" target="_blank">
+          <img src="https://eu.malinandgoetz.com/media/catalog/product/cache/0168a32d73c9682ea7a84c8fe1cff9c7/t/r/travel-kit-wall-lean-1oz-sfw_1.jpg" alt="MALIN+GOETZ Best-sellers Travel Kit Image" class="item-image">
+        </a>
+      </li>
+      <li>
+        <div class="item-details">
+          <input type="checkbox" class="item-checkbox" data-price="34.00" data-quantity="4" data-link="https://eu.malinandgoetz.com/healthy-skin-starter-set" data-name="MALIN+GOETZ, Healthy Skin Starter Set"
+            data-image="https://eu.malinandgoetz.com/media/catalog/product/cache/0168a32d73c9682ea7a84c8fe1cff9c7/m/g/mg_healthy.skin.starter.set_pack.shot-1_740x740_producttile_1.jpg">
+          MALIN+GOETZ, Healthy Skin Starter Set - €34.00, Quantity: 4
+        </div>
+        <a href="https://eu.malinandgoetz.com/healthy-skin-starter-set" target="_blank">
+          <img src="https://eu.malinandgoetz.com/media/catalog/product/cache/0168a32d73c9682ea7a84c8fe1cff9c7/m/g/mg_healthy.skin.starter.set_pack.shot-1_740x740_producttile_1.jpg" alt="MALIN+GOETZ Healthy Skin Starter Set Image" class="item-image">
+        </a>
+      </li>
+      <li>
+        <div class="item-details">
+          <input type="checkbox" class="item-checkbox" data-price="80.00" data-quantity="5" data-link="https://www.diptyqueparis.com/en_eu/p/home/scented-candles/small-scented-candles/set-of-5-miniature-iconic-candles-pre-composed.html"
+            data-name="Diptyque, Set of Miniature Iconic Candles" data-image="https://www.diptyqueparis.com/media/catalog/product/m/i/mini-candle-set_5x35g_cof5minibg_rvb_hd_fond-gris_spec-ecom_1_diptyque.jpg">
+          Diptyque, Set of Miniature Iconic Candles - €80.00, Quantity: 5
+        </div>
+        <a href="https://www.diptyqueparis.com/en_eu/p/home/scented-candles/small-scented-candles/set-of-5-miniature-iconic-candles-pre-composed.html" target="_blank">
+          <img src="https://www.diptyqueparis.com/media/catalog/product/m/i/mini-candle-set_5x35g_cof5minibg_rvb_hd_fond-gris_spec-ecom_1_diptyque.jpg" alt="Diptyque Set of Miniature Iconic Candles Image" class="item-image">
+        </a>
+      </li>
+      <li>
+        <div class="item-details">
+          <input type="checkbox" class="item-checkbox" data-price="38.00" data-quantity="1" data-link="https://www.diptyqueparis.com/en_eu/p/home/scented-candles/small-scented-candles/feu-de-bois-wood-fire-small-candle.html"
+            data-name="Diptyque, Small Candle Feu de Bois (Wood Fire)"
+            data-image="https://www.diptyqueparis.com/media/catalog/product/d/i/diptyque-feu-de-bois-small-candle-70g-fb70v-1.jpg?quality=100&bg-color=255,255,255&fit=bounds&height=&width=&format=webp&width=2048&quality=90">
+          Diptyque, Small Candle Feu de Bois (Wood Fire) - €38.00, Quantity: 1
+        </div>
+        <a href="https://www.diptyqueparis.com/en_eu/p/home/scented-candles/small-scented-candles/feu-de-bois-wood-fire-small-candle.html" target="_blank">
+          <img src="https://www.diptyqueparis.com/media/catalog/product/d/i/diptyque-feu-de-bois-small-candle-70g-fb70v-1.jpg?quality=100&bg-color=255,255,255&fit=bounds&height=&width=&format=webp&width=2048&quality=90"
+            alt="Diptyque Candle Feu de Bois" class="item-image">
+        </a>
+      </li>
+      <li>
+        <div class="item-details">
+          <input type="checkbox" class="item-checkbox" data-price="35.00" data-quantity="4" data-link="https://grownalchemist.com/eu/products/mini-skin-essentials-bundle" data-name="Grown Alchemist, Mini Skin Essentials Bundle"
+            data-image="https://cdn.shopify.com/s/files/1/0625/8694/5706/files/Summer-Skin-Minis.png">
+          Grown Alchemist, Mini Skin Essentials Bundle - €35.00, Quantity: 4
+        </div>
+        <a href="https://grownalchemist.com/eu/products/mini-skin-essentials-bundle" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0625/8694/5706/files/Summer-Skin-Minis.png" alt="Grown Alchemist Mini Skin Essentials Bundle Image" class="item-image">
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+  <!-- Total Summary -->
+  <div class="total">
+    Total Price: €<span id="total-price">0.00</span><br>
+    Total Quantity: <span id="total-quantity">0</span>
+  </div>
+
+  <div class="links-section">
+    <h3>Your advent calendar will look like that:</h3>
+    <ul id="selected-links"></ul>
+  </div>
+
+  <script>
+    const selectedLinksContainer = document.getElementById('selected-links');
+
+    // Function to update the summary of the selected items in a group
+    function updateGroupSummary(group) {
+      let groupPrice = 0;
+      let groupQuantity = 0;
+      let groupHasSelectedItem = false; // Track if any item is selected
+
+      const checkboxes = group.querySelectorAll('.item-checkbox');
+      checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+          const price = parseFloat(checkbox.dataset.price);
+          const quantity = parseInt(checkbox.dataset.quantity);
+          groupPrice += price;
+          groupQuantity += quantity;
+          groupHasSelectedItem = true; // At least one item is selected
+        }
+      });
+
+      group.querySelector('.group-total-price').innerText = groupPrice.toFixed(2);
+      group.querySelector('.group-total-quantity').innerText = groupQuantity;
+
+      // Mark group name green if any item is selected
+      const groupName = group.querySelector('.group-name');
+      if (groupHasSelectedItem) {
+        groupName.classList.add('green');
+      } else {
+        groupName.classList.remove('green');
+      }
+    }
+
+    // Update selected links display
+    function updateSelectedLinks() {
+      selectedLinksContainer.innerHTML = ''; // Clear previous selections
+      const selectedItems = document.querySelectorAll('.item-checkbox:checked');
+
+      selectedItems.forEach(item => {
+        const itemName = item.getAttribute('data-name');
+        const itemLink = item.getAttribute('data-link');
+        const itemImage = item.getAttribute('data-image');
+
+        // Create a new selected item element
+//
+const linkElement = document.createElement('a');
+linkElement.href = itemLink;
+linkElement.target = "_blank";
+
+const imageElement = document.createElement('img');
+imageElement.src = itemImage;
+imageElement.alt = itemName;
+imageElement.classList.add('item-image');
+
+linkElement.appendChild(imageElement);
+selectedLinksContainer.appendChild(linkElement);
+//
+        // const selectedItem = document.createElement('div');
+        // selectedItem.classList.add('selected-item');
+
+        // // Create and append image
+        // const imgElement = document.createElement('img');
+        // imgElement.src = itemImage;
+        // imgElement.alt = itemName;
+        // selectedItem.appendChild(imgElement);
+
+        // // Create and append item name link
+        // const linkElement = document.createElement('a');
+        // linkElement.href = itemLink;
+        // linkElement.target = '_blank';
+        // linkElement.textContent = itemName;
+        //
+        // selectedItem.appendChild(linkElement);
+        // selectedLinksContainer.appendChild(selectedItem);
+      });
+    }
+
+    // Function to update the total price and quantity across all groups
+    function updateTotal() {
+      let totalPrice = 0;
+      let totalQuantity = 0;
+      //let selectedLinks = [];
+
+      const groups = document.querySelectorAll('.group');
+      groups.forEach(group => {
+        const groupPrice = parseFloat(group.querySelector('.group-total-price').innerText);
+        const groupQuantity = parseInt(group.querySelector('.group-total-quantity').innerText);
+
+        totalPrice += groupPrice;
+        totalQuantity += groupQuantity;
+
+        // Collect selected item links
+        // const checkboxes = group.querySelectorAll('.item-checkbox');
+        // checkboxes.forEach(checkbox => {
+        //     if (checkbox.checked) {
+        //         selectedLinks.push(checkbox.dataset.link);
+        //     }
+        // });
+      });
+
+      document.getElementById('total-price').innerText = totalPrice.toFixed(2);
+      document.getElementById('total-quantity').innerText = totalQuantity;
+
+      // Update the selected links display
+      updateSelectedLinks();
+      // const selectedLinksList = document.getElementById('selected-links');
+      // selectedLinksList.innerHTML = ''; // Clear existing links
+      // selectedLinks.forEach(link => {
+      //     const li = document.createElement('li');
+      //     const a = document.createElement('a');
+      //     a.href = link;
+      //     a.innerText = link;
+      //     a.target = "_blank"; // Open link in new tab
+      //     li.appendChild(a);
+      //     selectedLinksList.appendChild(li);
+      //});
+    }
+
+    // Add event listeners to checkboxes to trigger group updates
+    document.querySelectorAll('.item-checkbox').forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        const group = checkbox.closest('.group');
+        updateGroupSummary(group);
+        updateTotal();
+      });
+    });
+
+    // Function to toggle group visibility
+    function toggleGroup(event) {
+      const group = event.currentTarget.closest('.group');
+      group.classList.toggle('expanded');
+      group.classList.toggle('collapsed');
+    }
+
+    // Add event listeners to toggle headers for expanding/collapsing groups
+    document.querySelectorAll('.toggle-header').forEach(header => {
+      header.addEventListener('click', toggleGroup);
+    });
+
+    // Initialize all groups as collapsed
+    document.querySelectorAll('.group').forEach(group => {
+      group.classList.add('collapsed');
+    });
+  </script>
+
+</body>
+
+</html>
